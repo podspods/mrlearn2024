@@ -1,0 +1,18 @@
+{
+  "name": "@irachus/jscommon",
+  "version": "1.0.0",
+  "description": "lib common snot react ",
+  "main": "src/index.ts",
+ 
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.5.4"
+  }
+}

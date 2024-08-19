@@ -1,112 +1,134 @@
 # mrlearn2024
-- learn from : Code for the [Youtube video](https://youtu.be/pz4f9Q6VYZA) on how to create your own Monorepo using PNPM workspace, React, Vue, Node, Eslint, Prettier and Typescript
 
 MonoRepo learning 2024
 
 
-# Design
+# Create your own Monorepo
+Code for the [Youtube video](https://youtu.be/pz4f9Q6VYZA) on how to create your own Monorepo using PNPM workspace, React, Vue, Node, Eslint, Prettier and Typescript
 
+## The commands and code used throughout the video:
 
-mrlearn2024
-      ├─── frontend 
-      |      ├──── irisation
-      |      ├──── irisation─adm
-      |      ├──── existensia
-      |      └──── project4
-      |       
-      ├─── backend 
-      |      ├──── mongoose/section
-      |      ├──── mongoose/carousel
-      |      ├──── mariadb/auth
-      |      └──── postgresql
-      | 
-      ├─── libs 
-      |      ├────── jscommon
-      |      └────── components
-      |
-      └─── config 
-             └────── tailwind
+```sh
+npm install -g pnpm
+```
 
+```sh
+pnpm init
+```
 
+```sh
+git init
+```
 
+### Setup Prettier
 
+```sh
+pnpm add -D prettier
+```
 
-## Setup workspace
+Create **.prettierignore** with the below contents:
+
+```
+coverage
+public
+dist
+pnpm-lock.yaml
+pnpm-workspace.yaml
+```
+
+Create **.prettierrc** with the below contents:
+
+```js
+{
+  "semi": true,
+  "singleQuote": true
+}
+```
+
+### Setup VSCODE
+
+Create workspace settings:
+
+```sh
+mkdir .vscode && touch .vscode/settings.json
+```
+
+Add below contents inside settings.json
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+```
+
+### Setup ESLint
+
+```sh
+pnpm create @eslint/config
+```
+
+Create **.eslintignore** with the below contents:
+
+```
+coverage
+public
+dist
+pnpm-lock.yaml
+pnpm-workspace.yaml
+```
+
+### Integrating ESLint with Prettier
+
+Add below plugins so that both Prettier and Eslint can do both of their jobs without getting in ecah other ways
+
+```sh
+pnpm add -D eslint-config-prettier eslint-plugin-prettier
+```
+
+```js
+module.exports = {
+  extends: [..., 'plugin:prettier/recommended'],
+}
+```
+
+```sh
+npm pkg set scripts.lint="eslint ."
+npm pkg set scripts.format="prettier --write ."
+```
+
+### Pre-commit hooks
+
+```sh
+pnpm add --save-dev husky lint-staged
+pnpm exec husky install
+npm pkg set scripts.prepare="husky install"
+pnpm exec husky add .husky/pre-commit "pnpm exec lint-staged"
+```
+
+```json
+"lint-staged": {
+    "**/*.{js,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "**/*": "prettier --write --ignore-unknown"
+  }
+```
+
+### Setup workspace
 
 ```sh
 touch pnpm-workspace.yaml
 ```
 
-
-
 ```yml
 packages:
-  - 'frontend/*'
-  - 'backend/*'
+  - 'apps/*'
   - 'libs/*'
-  - 'config/*'
-```config
-
-```sh
-mkdir frontend backend libs config
-```
-
-## add git
-add .gitignore
-push to git
-
-
-# setup  libs/jscommon
-1. contains  helpers, common constant, common typedef, mongoose schema etc (every common but  none react-components )
-
-## create the directory and init in order to have package.json
-```sh
-mkdir libs/jscommon
-cd libs/jscommon
-pnpm init
 ```
 
 ```sh
-pnpm add typescript --save-dev
-```
-```sh
-npm tsc --init
-```
-
-
-libs/jscommon/
-├── node_modules/
-├── src/
-│   └── index.ts
-├── package.json
-└── tsconfig.json
-
-
-
-## tsconfig.json
-
-```js
-{
-  "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "target": "ESNext",
-    "module": "CommonJS",
-    "strict": true,
-    "esModuleInterop": true
-  }
-}
-```
-
-
-
-## creer les projects frontend : 
-
-
-
-```sh
-cd frontend
-pnpx create-next-app@latest 1-irisations --typescript --eslint --tailwind --src-dir --app --import-alias './src/**' 
+mkdir apps libs
 ```
 
 ### Setup common package - utils
