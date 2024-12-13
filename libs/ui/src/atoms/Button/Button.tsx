@@ -1,26 +1,24 @@
-// src/components/Button.tsx
-import React from 'react';
-import '../../styles.css';
+'use client'
 
+import React from 'react' 
+import {cn} from '@irachus/jscommon'
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>&  {
-  className?: string;
-  disabled?: boolean;
+  
+
 };
 
-// export type ButtonProps = {
-//   children: React.ReactNode;
-// };
+export default function Button({ children,className,...props }: ButtonProps) {
 
-export default function Button({ className='',disabled, children, ...props }: ButtonProps) {
 
-  const grayed = disabled;
-  return (
+  const mergedClassName = cn('px-2 py-1 rounded border border-b-2 border-r-2  border-neutral-300 bg-neutral-100 active:scale-95', className );
+
+  return ( 
     <>
-    {grayed}
-    <button className={className + ' p-2 rounded border border- '} {...props}>
-      {children}
-    </button>
+    <button type='button' className={mergedClassName + ' active:border ' }
+        {...props}
+      >{children}</button>
+
     </>
   );
 }

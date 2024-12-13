@@ -1,14 +1,21 @@
-// tailwind.config.js
-import type { Config } from 'tailwindcss';
-/** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss'
 
-export const tailwindSharedConfig: Config = {
+export default {
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}',
+    './src/app/**/*.{js,ts,jsx,tsx}',
+    './src/atoms/**/*.{js,ts,jsx,tsx}'
+  ],
   theme: {
     extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
       colors: {
         'link-default': '#1d4ed8',
         'link-hover': '#2563eb',
-     
         primary: {
           100: '#CCCCFF',
           200: '#9999FF',
@@ -99,12 +106,6 @@ export const tailwindSharedConfig: Config = {
       }
     }
   },
-  variants: {},
   plugins: [],
-  content: [
-        './src/atoms/**/*.{js,ts,jsx,tsx}', 
-  ]
-};
+} satisfies Config
 
-
-// export default tailwindSharedConfig;

@@ -1,0 +1,24 @@
+GET http://localhost:3998/slide
+
+
+
+###
+GET http://localhost:3998/slide/list
+
+
+
+###
+GET http://localhost:3998/slide/page/2001
+
+
+###
+GET http://localhost:3998/slide/reorg/2001
+
+
+
+
+
+###
+GET http://localhost:3999/section/page/2001
+
+

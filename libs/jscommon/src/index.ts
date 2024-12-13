@@ -10,3 +10,9 @@ export function by2(value: number): number {
 export function tutu (){
   return 'tutu ZZ';
 }
+
+export * from './helpers'
+export * from './common'
+export * from './typedef'
+export * from './testValue'
+

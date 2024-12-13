@@ -1,4 +1,6 @@
 export {default as Button} from './Button/Button'
-
-
-
+export {default as Logo} from './Logo/Logo'
+export * from './TrainAccess/TrainAccess'
+export {default as Localisation} from './Localisation/Localisation'
+export {default as Sole} from './Sole/Sole'
+export {default as Copyright} from './Copyright/Copyright'

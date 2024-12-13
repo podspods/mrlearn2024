@@ -1,9 +1,8 @@
 {
   "name": "@irachus/jscommon",
   "version": "1.0.0",
-  "description": "lib common snot react ",
+  "description": "lib common not react ",
   "main": "src/index.ts",
- 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
@@ -13,6 +12,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/luxon": "^3.4.2",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "luxon": "^3.5.0",
+    "tailwind-merge": "^2.5.2"
   }
 }

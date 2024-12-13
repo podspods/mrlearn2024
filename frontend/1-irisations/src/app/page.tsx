@@ -1,20 +1,28 @@
-'use client'
-import { by2 } from '@irachus/jscommon';
-import { Button } from '@irachus/ui';
-import '../styles.css'
+'use client';
+import {
+  getPageId,
+  lang2Id,
+  pageContainsInit,
+  PageId,
+  Project
+} from '@irachus/jscommon';
+import { DisplayPage } from '@irachus/ui';
+import { useTranslation } from 'react-i18next';
+import usePageContain from '../hooks/usePageContain';
+
 export default function Home() {
+  const { i18n } = useTranslation();
+  const idLang = lang2Id(i18n.language);
+  const pageId = getPageId(Project.IRISATIONS, PageId.HOME);
+  const { pageContains } = usePageContain(pageId);
 
-  const handleClick = () =>{
 
-    console.log('click ==>',8 );
-    
-  }
   return (
-   <>
-   <p className='border-primary-400 border bg-primary-200'>{by2(2)}</p>
-   <Button  onClick={handleClick}>button children</Button>
-   <p className='bg-secondary-500'>{by2(3)}</p>
-
-  </>
+    <>
+      <DisplayPage
+        pageContains={pageContains || pageContainsInit}
+        idLang={idLang}
+      />
+    </>
   );
 }
